@@ -67,6 +67,12 @@ public class Uebung {
 		System.out.println(1);
 	}
 	
+	public static long fibRekursiv(int grenze, long fib1, long fib2) {
+		if (grenze <= 1)
+			return fib2;
+		return fibRekursiv(grenze - 1, fib2, fib1 + fib2);
+	}
+	
 	public static void main(String[] args) {
 		rev1(1234);
 		System.out.println("\n" + rev2(1234));
@@ -83,5 +89,7 @@ public class Uebung {
 		ulamRek(18);
 		System.out.println("--- Ulam iterativ ---");
 		ulamIte(18);
+		
+		System.out.println("Aufgabe 5: " + fibRekursiv(6, 0, 1));
 	}
 }
