@@ -267,20 +267,27 @@ public class AVLBaum<T extends Comparable<T>>
 	public String traversierePreOrder()
 	{
 		String ausgabe = "";
+		// Stack initialisieren
 		Deque<AVLKnoten<T>> stack = new LinkedList<AVLKnoten<T>>();
 		
+		// Wurzel auf Stack schreiben falls vorhanden
 		if(wurzel == null) return ausgabe;
 		stack.push(wurzel);
 		
+		// Solange wiederholen bis Stack leer ist
 		while(!stack.isEmpty()) {
-			AVLKnoten<T> knoten = stack.peek();
-			ausgabe += knoten.getDaten();
+			// Aktuell oberstes Element ausgeben
+			AVLKnoten<T> top = stack.peek();
+			ausgabe += top.getDaten();
+			// Oberstes Element vom Stack entfernen
 			stack.pop();
 			
-			if(knoten.getKnotenRechts() != null) 
-				stack.push(knoten.getKnotenRechts());
-			if(knoten.getKnotenLinks() != null) 
-				stack.push(knoten.getKnotenLinks());
+			// Wenn es rechts weitergeht, dieses Element zunächst auf den Stack schreiben
+			if(top.getKnotenRechts() != null) 
+				stack.push(top.getKnotenRechts());
+			// Dann wenn es links auch noch weiter geht, dieses Element ebenfalls auf den Stack schreiben
+			if(top.getKnotenLinks() != null) 
+				stack.push(top.getKnotenLinks());
 		}
 		
 		return ausgabe;
